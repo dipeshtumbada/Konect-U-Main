@@ -12,24 +12,15 @@ const description = "";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content=""
-    />
+    <meta name="description" content="" />
     <meta name="viewport" content="width=device-width" />
 
     <title>{title} | Konect-U</title>
     <meta name="description" content={description} />
-    <meta
-      property="og:title"
-      content={title + "| Konect-U"}
-    />
+    <meta property="og:title" content={title + "| Konect-U"} />
     <meta property="og:description" content={description} />
     <meta name="robots" content="index,follow" />
-    <meta
-      name="keywords"
-      content=""
-    />
+    <meta name="keywords" content="" />
 
     <link rel="sitemap" href="/sitemap.xml" />
 
@@ -51,6 +42,8 @@ const description = "";
   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
   html {
     font-family: "Poppins", sans-serif;
-    @apply bg-col-1-light;
+  }
+  body {
+    @apply bg-primary-bg;
   }
 </style>

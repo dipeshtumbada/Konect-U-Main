@@ -1,0 +1,24 @@
+---
+import Logo from "../assets/logo.gif";
+---
+
+<nav class="flex items-center justify-evenly w-full bg-primary-bg absolute">
+  <div
+    id="capsule"
+    class="bg-[#2b2d32] flex items-center gap-[22px] p-[16px] rounded-full text-white"
+  >
+    <a href="#home" class="text-white hover:text-primary">Home</a>
+    <a href="#about" class="text-white hover:text-primary">About</a>
+    <a href="#services" class="text-white hover:text-primary">Our Services</a>
+    <a class="text-white hover:text-primary">Our Team</a>
+  </div>
+  <img src={Logo.src} alt="" class="h-[160px] w-auto pr-[300px]" />
+  <button
+    class="text-[18px] font-semibold py-2 px-5 rounded-full border-none bg-primary text-white cursor-pointer transition duration-300 ease hover:bg-[#40444b]"
+  >
+    Login
+  </button>
+  <div id="menu-icon" class="hidden cursor-pointer">
+    <i class="fas fa-bars text-[24px] text-white"></i>
+  </div>
+</nav>
