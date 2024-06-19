@@ -1,0 +1,63 @@
+---
+import Resume from "../assets/resume.png";
+import SOP from "../assets/sop.png";
+---
+
+<div class="flex items-center justify-center pt-10 text-4xl">
+  <span class="text-bg text-center font-light"
+    >Nalanda <span class="text-radGradient font-semibold">Helps with...</span
+    ></span
+  >
+</div>
+<div
+  class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-0 pt-[60px] pb-20 pl-[200px] pr-[200px]"
+>
+  <div
+    class="my-[-30px] md:my-[-1px] mx-auto max-w-80 flex flex-col justify-center items-center rounded-xl text-txt text-center shadow-md bg-bg bg-opacity-20"
+  >
+    <img
+      class="relative m-4 overflow-hidden object-cover w-[280px] h-66 mb-[-5px]"
+      alt="image"
+      src={Resume.src}
+    />
+    <div class="p-6">
+      <p class="mb-4 text-xl font-medium leading-snug tracking-wide text-bg">
+        Resume Analysis
+      </p>
+      <p class="mb-6 text-sm font-light leading-snug tracking-wide text-bg">
+        Content-focused features developed to get you hired
+      </p>
+      <button
+        class="bg-radgradient text-sm font-medium py-2 px-5 rounded-full border-none text-bg cursor-pointer transition duration-300 ease hover:bg-[#40444b]"
+      >
+        Analyze your resume
+      </button>
+    </div>
+  </div>
+  <div
+    class="my-[-30px] md:my-[-1px] mx-auto max-w-80 flex flex-col justify-center items-center rounded-xl text-txt text-center shadow-md bg-bg bg-opacity-20"
+  >
+    <img
+      class="relative m-4 overflow-hidden object-cover w-[280px] h-66 mb-[-5px]"
+      alt="image"
+      src={SOP.src}
+    />
+    <div class="p-6">
+      <p
+        class="mb-4 font-sans text-xl font-medium leading-snug tracking-wide text-bg"
+      >
+        SOP Builder
+      </p>
+      <p
+        class="mb-6 font-sans text-sm font-light leading-snug tracking-wide text-bg"
+      >
+        Revolutionize Your Application Process with AI-Driven SOPs
+      </p>
+      <button
+        class="bg-radgradient text-sm font-medium py-2 px-5 rounded-full border-none text-bg cursor-pointer transition duration-300 ease hover:bg-[#40444b]"
+      >
+        Build your SOP
+      </button>
+    </div>
+  </div>
+</div>
