@@ -1,24 +1,18 @@
 ---
 import Logo from "../assets/logo.gif";
+import Hamburger from "./Hamburger.astro";
 ---
 
-<nav class="flex items-center justify-evenly w-full absolute">
-  <div
-    id="capsule"
-    class="bg-[#2b2d32] flex items-center gap-[22px] p-[16px] rounded-full text-bg"
-  >
+<nav class="flex items-center justify-between w-full absolute p-4 lg:justify-evenly">
+  <div class="hidden lg:flex bg-[#2b2d32] items-center gap-[22px] p-[16px] rounded-full text-bg" id="capsule">
     <a href="#home" class="text-bg hover:text-primary">Home</a>
     <a href="#about" class="text-bg hover:text-primary">About</a>
     <a href="#services" class="text-bg hover:text-primary">Our Services</a>
-    <a class="text-bg hover:text-primary">Our Team</a>
+    <a href="#team" class="text-bg hover:text-primary">Our Team</a>
   </div>
-  <img src={Logo.src} alt="" class="h-[160px] w-auto pr-[260px]" />
-  <button
-    class="bg-primary text-[18px] font-semibold py-2 px-5 rounded-full border-none text-bg cursor-pointer transition duration-300 ease hover:bg-[#40444b]"
-  >
+  <img src={Logo.src} alt="Logo" class="h-[80px] lg:h-[160px] w-auto lg:pr-[260px]" />
+  <button class="hidden lg:block bg-primary text-[18px] font-semibold py-2 px-5 rounded-full border-none text-bg cursor-pointer transition duration-300 ease hover:bg-[#40444b]">
     Login
   </button>
-  <div id="menu-icon" class="hidden cursor-pointer">
-    <i class="fas fa-bars text-[24px] text-bg"></i>
-  </div>
+  <Hamburger />
 </nav>

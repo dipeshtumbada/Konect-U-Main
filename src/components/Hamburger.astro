@@ -1,0 +1,56 @@
+---
+const toggleMenu = () => {
+  const menu = document.getElementById('mobile-menu');
+  if (menu) {
+    menu.classList.toggle('hidden');
+    menu.classList.toggle('flex');
+  }
+};
+---
+
+<label for="menu-toggle" class="rounded p-2 text-gray-600 transition hover:text-gray-600/75 cursor-pointer lg:hidden block">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+  </svg>
+</label>
+<input class="hidden" type="checkbox" id="menu-toggle" />
+
+<div
+  id="mobile-menu"
+  class="hidden absolute top-0 left-0 w-full h-screen bg-[#2b2d32] flex-col items-center justify-center z-50"
+>
+  <label for="menu-toggle" class="absolute top-5 right-5 p-2 text-gray-600 transition hover:text-gray-600/75 cursor-pointer lg:hidden block">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </label>
+  <a href="#home" class="text-bg hover:text-primary mb-4" onclick="toggleMenu()">Home</a>
+  <a href="#about" class="text-bg hover:text-primary mb-4" onclick="toggleMenu()">About</a>
+  <a href="#services" class="text-bg hover:text-primary mb-4" onclick="toggleMenu()">Our Services</a>
+  <a href="#team" class="text-bg hover:text-primary mb-4" onclick="toggleMenu()">Our Team</a>
+  <button
+    class="bg-primary text-[18px] font-semibold py-2 px-5 rounded-full border-none text-bg cursor-pointer transition duration-300 ease hover:bg-[#40444b]"
+    onclick="toggleMenu()"
+  >
+    Login
+  </button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const toggleMenu = () => {
+      const menu = document.getElementById('mobile-menu');
+      const menuToggle = document.getElementById('menu-toggle') as HTMLInputElement;
+      if (menu) {
+        menu.classList.toggle('hidden');
+        menu.classList.toggle('flex');
+      }
+      // Uncheck the checkbox to close the menu when a link is clicked
+      if (menuToggle) {
+        menuToggle.checked = !menuToggle.checked;
+      }
+    };
+
+    document.getElementById('menu-toggle').addEventListener('click', toggleMenu);
+  });
+</script>

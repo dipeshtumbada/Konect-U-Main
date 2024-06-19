@@ -14,6 +14,10 @@ export default {
         'gradient1': 'linear-gradient(to right, #fb4d08 0%,#ffb703 50%,#fb4d08 100%)',
         'radgradient': 'radial-gradient(ellipse at center, #ffb703 0%,#ff9325 54%,#fb4d08 100%)',
       },
+      rotate: {
+        '30': '30deg',  // Add custom rotation value
+        '150': '150deg'  // Add custom rotation value for the second div
+      }
     },
   },
   plugins: [],
