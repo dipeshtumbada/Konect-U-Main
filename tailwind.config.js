@@ -17,7 +17,17 @@ export default {
       rotate: {
         '30': '30deg',  // Add custom rotation value
         '150': '150deg'  // Add custom rotation value for the second div
-      }
+      },
+      animation: {
+				'loop-scroll': 'loop-scroll 10s linear infinite',
+				'loop-scroll-slow': 'loop-scroll 40s linear infinite',
+			},
+			keyframes: {
+				'loop-scroll': {
+					from: { transform: 'translateX(0)' },
+					to: { transform: 'translateX(-100%)' },
+				}
+			}
     },
   },
   plugins: [],
