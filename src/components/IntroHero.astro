@@ -1,5 +1,6 @@
 ---
-
+import Tab from '../assets/tab.png'
+import Demo from '../assets/demo.mp4'
 ---
 
 <div class="flex items-center justify-center pt-10 text-4xl">
@@ -19,4 +20,11 @@
     engineered to exceed expectations and drive innovation. Elevate your
     operations with Nalanda, the ultimate solution for modern AI needs.
   </p>
+</div>
+
+<div class="relative flex justify-center items-center w-full h-auto">
+  <div class="relative w-[1400px] h-[600px]">
+    <img src={Tab.src} class="w-full h-full" alt="">
+    <video id="demoVideo" src={Demo} class="absolute top-[11.67%] left-[20%] w-[60%] h-[75%] object-cover" autoplay muted loop></video>
+  </div>
 </div>
