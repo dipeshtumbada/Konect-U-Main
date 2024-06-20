@@ -1,0 +1,36 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Navbar from "../components/Navbar1.astro";
+import { jess } from "../assets/team";
+---
+
+<PageLayout title="Our Team">
+  <Navbar />
+  <section class="pt-[150px]">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
+      <div class="flex items-center justify-center pt-10 text-4xl pb-20">
+        <span class="text-bg text-center font-light"
+          >Website <span class="text-radGradient font-semibold">Contributors</span></span
+        >
+      </div>
+
+      <div
+        class="grid"
+      >
+        <div class="text-center text-gray-500 dark:text-gray-400">
+          <img
+            class="mx-auto mb-4 w-[200px] h-[200px] rounded-full"
+            src={jess.src}
+            alt="jess john"
+          />
+          <h3
+            class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
+            <a href="https://jessjohn.tech">Jess John</a>
+          </h3>
+          <p>Software Developer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

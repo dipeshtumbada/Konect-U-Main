@@ -1,0 +1,88 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Navbar from "../components/Navbar1.astro";
+import { clive, kundeshwar, kshitij, mauli, kevin } from "../assets/team";
+---
+
+<PageLayout title="Our Team">
+  <Navbar />
+  <section class="pt-[150px]">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
+      <div class="flex items-center justify-center pt-10 text-4xl pb-20">
+        <span class="text-bg text-center font-light"
+          >Our <span class="text-radGradient font-semibold">Team</span></span
+        >
+      </div>
+
+      <div
+        class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      >
+        <div class="text-center text-gray-500 dark:text-gray-400">
+          <img
+            class="mx-auto mb-4 w-[200px] h-[200px] rounded-full"
+            src={clive.src}
+            alt="clive cardoza"
+          />
+          <h3
+            class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
+            <a href="#">Clive Cardoza</a>
+          </h3>
+          <p>Founder & COO</p>
+        </div>
+        <div class="text-center text-gray-500 dark:text-gray-400">
+          <img
+            class="mx-auto mb-4 w-[200px] h-[200px] rounded-full"
+            src={kundeshwar.src}
+            alt="Kundeshwar Pundalik"
+          />
+          <h3
+            class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
+            <a href="#">Kundeshwar Pundalik</a>
+          </h3>
+          <p>CTO & Co-Founder</p>
+        </div>
+        <div class="text-center text-gray-500 dark:text-gray-400">
+          <img
+            class="mx-auto mb-4 w-[200px] h-[200px] rounded-full"
+            src={kshitij.src}
+            alt="Kshitij Jadhav"
+          />
+          <h3
+            class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
+            <a href="#">Kshitij Jadhav</a>
+          </h3>
+          <p>Technical Advisory</p>
+        </div>
+        <div class="text-center text-gray-500 dark:text-gray-400">
+          <img
+            class="mx-auto mb-4 w-[200px] h-[200px] rounded-full"
+            src={mauli.src}
+            alt="Mauli Soni"
+          />
+          <h3
+            class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
+            <a href="#">Mauli Soni</a>
+          </h3>
+          <p>Marketing & Sales</p>
+        </div>
+        <div class="text-center text-gray-500 dark:text-gray-400">
+          <img
+            class="mx-auto mb-4 w-[200px] h-[200px] rounded-full"
+            src={kevin.src}
+            alt="Kevin Lewis"
+          />
+          <h3
+            class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
+            <a href="#">Kevin Lewis</a>
+          </h3>
+          <p>Founder & CEO</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
