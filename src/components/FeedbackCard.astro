@@ -1,5 +1,5 @@
 ---
-const { content, name, title, img } = Astro.props;
+const { content, name, title} = Astro.props;
 import quotes from "../assets/quotes.svg";
 ---
 
@@ -18,8 +18,7 @@ import quotes from "../assets/quotes.svg";
   </p>
 
   <div class="flex flex-row">
-    <img src={img} alt={name} class="w-[48px] h-[48px] rounded-full" />
-    <div class="flex flex-col ml-4">
+    <div class="flex flex-col">
       <h4 class="font-semibold font-base text-[20px] leading-[32px] text-bg">
         {name}
       </h4>
