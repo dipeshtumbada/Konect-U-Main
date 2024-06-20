@@ -1,4 +1,4 @@
-# Website for Konect-u
+# Website for Konect-U
 
 ## 🚀 Project Description
 
