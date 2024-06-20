@@ -1,0 +1,26 @@
+---
+import FeedbackCard from "../components/FeedbackCard.astro";
+import { feedback } from "../constants";
+---
+
+<div class="flex items-center justify-center pt-[50px] text-4xl">
+  <span class="text-bg text-center font-light"
+    >Our <span class="text-radGradient font-semibold">Testimonials</span></span
+  >
+</div>
+
+<div
+  class="flex flex-col lg:flex-row justify-center items-center w-full feedback-container relative z-[1] pt-5 pb-10"
+>
+  {
+    feedback.map((card) => (
+      <FeedbackCard
+        key={card.id}
+        content={card.content}
+        name={card.name}
+        title={card.title}
+        img={card.img}
+      />
+    ))
+  }
+</div>
