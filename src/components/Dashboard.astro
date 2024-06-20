@@ -1,0 +1,89 @@
+<div class="flex items-center justify-center text-4xl pt-10">
+  <span class="text-bg text-center font-light">
+    Our <span class="text-radGradient font-semibold">Core Strength</span>
+  </span>
+</div>
+
+<div
+  class="flex flex-col lg:flex-row items-start md:items-center pl-10 lg:pl-0 justify-center pt-10 lg:pt-0 pb-6"
+>
+  <div
+    class="flex flex-row text-bg p-0 lg:p-10 gap-[5px] md:gap-0 items-center justify-center"
+  >
+    <div class="flex items-center justify-center w-[100px]">
+      <p class="text-bg text-3xl" id="universities">0</p><span
+        class="text-3xl text-bg">+</span
+      >
+    </div>
+    <p class="uppercase text-xl text-radGradient">Partner universities</p>
+  </div>
+  <div class="text-bg invisible lg:visible">|</div>
+  <div
+    class="flex flex-row text-bg p-0 lg:p-10 gap-[5px] md:gap-0 items-center justify-center"
+  >
+    <div class="flex items-center justify-center w-[100px]">
+      <p class="text-bg text-3xl" id="countries">0</p><span
+        class="text-3xl text-bg">+</span
+      >
+    </div>
+    <p class="uppercase text-xl text-radGradient">Countries</p>
+  </div>
+  <div class="text-bg invisible lg:visible">|</div>
+  <div
+    class="flex flex-row text-bg p-0 lg:p-10 gap-[5px] md:gap-0 items-center justify-center"
+  >
+    <div class="flex items-center justify-center w-[100px]">
+      <p class="text-bg text-3xl" id="branches">0</p><span
+        class="text-3xl text-bg">+</span
+      >
+    </div>
+    <p class="uppercase text-xl text-radGradient">Branches</p>
+  </div>
+  <div class="text-bg invisible lg:visible">|</div>
+  <div
+    class="flex flex-row text-bg p-0 lg:p-10 gap-[5px] md:gap-0 items-center justify-center"
+  >
+    <div class="flex items-center justify-center w-[100px]">
+      <p class="text-bg text-3xl" id="global-admissions">0</p><span
+        class="text-3xl text-bg">+</span
+      >
+    </div>
+    <p class="uppercase text-xl text-radGradient">Global Admissions</p>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const Universities = 20;
+    const Countries = 10;
+    const Branches = 10;
+    const GloAdmission = 200;
+
+    const easeOutQuad = (t) => t * (2 - t);
+
+    const animateCount = (element, start, end, duration) => {
+      const obj = document.getElementById(element);
+      const startTime = performance.now();
+
+      const updateCount = (currentTime) => {
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(elapsedTime / duration, 1);
+        const easedProgress = easeOutQuad(progress);
+        const currentValue = Math.floor(start + (end - start) * easedProgress);
+
+        obj.textContent = currentValue.toString();
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCount);
+        }
+      };
+
+      requestAnimationFrame(updateCount);
+    };
+
+    animateCount("universities", 0, Universities, 2000);
+    animateCount("countries", 0, Countries, 2000);
+    animateCount("branches", 0, Branches, 2000);
+    animateCount("global-admissions", 0, GloAdmission, 2000);
+  });
+</script>
