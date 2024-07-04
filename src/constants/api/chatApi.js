@@ -1,4 +1,3 @@
-// chatApi.js
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -6,7 +5,7 @@ import 'dotenv/config';
 import Groq from 'groq-sdk';
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = 80;  // Port 80 for HTTP
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
