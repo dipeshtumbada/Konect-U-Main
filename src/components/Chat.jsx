@@ -1,12 +1,14 @@
+//chat.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import ChatMessage from './ChatMessage';
-import ChatInput from './chatInput'; // Corrected import name to match the filename
-import { chatPages, profiles } from '../constants'; // Import chat pages and profiles
+import ChatInput from './chatInput';
+import { chatPages, profiles } from '../constants';
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [currentChatPage, setCurrentChatPage] = useState(null);
-  const [selectedProfile, setSelectedProfile] = useState(profiles[0]); // Initialize with the first profile
+  const [selectedProfile, setSelectedProfile] = useState(profiles[0]);
+  const [isChatHistoryVisible, setIsChatHistoryVisible] = useState(true);
   const messagesEndRef = useRef(null);
 
   // Load selected chat page messages
@@ -17,34 +19,39 @@ const Chat = () => {
   }, [currentChatPage]);
 
   // Scroll to the bottom of the chat window
-  useEffect(() => {
-    if (messages.length > 0) {
-      scrollToBottom();
-    }
-  }, [messages]);
-
-  // Scroll to the bottom of the chat window
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Handle sending a message
-  const sendMessage = (message) => {
+  const sendMessage = async (message) => {
     const userMessage = { role: 'user', content: message };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
 
-    // Simulate a response from an API (replace with actual API call if needed)
-    setTimeout(() => {
-      const botMessage = { role: 'assistant', content: 'This is a dummy response.' };
-      setMessages((prevMessages) => [...prevMessages, botMessage]);
-    }, 500); // Simulated delay
+    try {
+      const response = await fetch('http://localhost:5000/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ messages: [userMessage] }),
+      });
 
-    scrollToBottom();
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('Received response:', data);
+
+      const botMessage = { role: 'assistant', content: data.response };
+      setMessages((prevMessages) => [...prevMessages, botMessage]);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
-  // Handle selecting a chat page
-  const handleChatPageSelect = (chatPage) => {
-    setCurrentChatPage(chatPage);
+  const toggleChatHistory = () => {
+    setIsChatHistoryVisible(!isChatHistoryVisible);
   };
 
   return (
@@ -95,31 +102,44 @@ const Chat = () => {
 
       {/* Main Chat Interface */}
       <div className="flex flex-col-reverse lg:flex-row h-full gap-4 relative">
-        {/* Chat History Section */}
-        <div
-          id="chatHistory"
-          className="w-full lg:w-1/4 h-full bg-bg bg-opacity-15 text-white p-6 flex flex-col items-start rounded-xl"
-        >
-          <p className="text-lg font-semibold mb-4">Chat History</p>
-          <div className="overflow-y-auto w-full">
-            <ul>
-              {chatPages.map((chatPage) => (
-                <li
-                  key={chatPage.id}
-                  className="cursor-pointer p-4 mb-2 bg-bg bg-opacity-20 rounded-lg hover:bg-opacity-60"
-                  onClick={() => handleChatPageSelect(chatPage)}
-                >
-                  {chatPage.title}
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Toggle Button for Chat History */}
+        <div className="flex flex-col items-center lg:w-8 p-2">
+          <button
+            onClick={toggleChatHistory}
+            className="bg-radgradient text-white p-4 rounded-lg mb-4 w-full flex items-center justify-center"
+            style={{ fontSize: '24px' }}  // Larger arrow size
+          >
+            {isChatHistoryVisible ? '<' : '>'}
+          </button>
         </div>
+
+        {/* Chat History Section */}
+        {isChatHistoryVisible && (
+          <div
+            id="chatHistory"
+            className="w-full lg:w-1/4 h-full bg-bg bg-opacity-15 text-white p-6 flex flex-col items-start rounded-xl"
+          >
+            <p className="text-lg font-semibold mb-4">Chat History</p>
+            <div className="overflow-y-auto w-full">
+              <ul>
+                {chatPages.map((chatPage) => (
+                  <li
+                    key={chatPage.id}
+                    className="cursor-pointer p-4 mb-2 bg-bg bg-opacity-20 rounded-lg hover:bg-opacity-60"
+                    onClick={() => handleChatPageSelect(chatPage)}
+                  >
+                    {chatPage.title}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
 
         {/* Main Chat Section */}
         <div
           id="chat"
-          className="w-full lg:w-3/4 h-full bg-gray-800 text-white flex flex-col justify-between p-6 rounded-xl overflow-hidden"
+          className={`w-full ${isChatHistoryVisible ? 'lg:w-3/4' : 'lg:w-full'} h-full bg-gray-800 text-white flex flex-col justify-between p-6 rounded-xl overflow-hidden chat-section`}
         >
           <div className="text-xl lg:text-2xl font-semibold mb-4 text-radGradient">Konect - U</div>
 

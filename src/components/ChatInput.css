@@ -1,0 +1,147 @@
+/* ChatInput.css */
+
+.input-div {
+    position: relative;
+    width: 40px; /* Adjusted width */
+    height: 40px; /* Adjusted height */
+    border-radius: 50%;
+    border: 2px solid rgb(1, 235, 252);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0px 0px 100px rgb(1, 235, 252), inset 0px 0px 10px rgb(1, 235, 252), 0px 0px 5px rgb(255, 255, 255);
+    animation: flicker 2s linear infinite;
+  }
+  
+  .icon {
+    color: rgb(1, 235, 252);
+    font-size: 1.5rem; /* Adjusted font-size */
+    cursor: pointer;
+    animation: iconflicker 2s linear infinite;
+  }
+  
+  .input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer !important;
+  }
+  
+  @keyframes flicker {
+    0% {
+      border: 2px solid rgb(1, 235, 252);
+      box-shadow: 0px 0px 100px rgb(1, 235, 252), inset 0px 0px 10px rgb(1, 235, 252), 0px 0px 5px rgb(255, 255, 255);
+    }
+  
+    5% {
+      border: none;
+      box-shadow: none;
+    }
+  
+    10% {
+      border: 2px solid rgb(1, 235, 252);
+      box-shadow: 0px 0px 100px rgb(1, 235, 252), inset 0px 0px 10px rgb(1, 235, 252), 0px 0px 5px rgb(255, 255, 255);
+    }
+  
+    25% {
+      border: none;
+      box-shadow: none;
+    }
+  
+    30% {
+      border: 2px solid rgb(1, 235, 252);
+      box-shadow: 0px 0px 100px rgb(1, 235, 252), inset 0px 0px 10px rgb(1, 235, 252), 0px 0px 5px rgb(255, 255, 255);
+    }
+  
+    100% {
+      border: 2px solid rgb(1, 235, 252);
+      box-shadow: 0px 0px 100px rgb(1, 235, 252), inset 0px 0px 10px rgb(1, 235, 252), 0px 0px 5px rgb(255, 255, 255);
+    }
+  }
+  
+  @keyframes iconflicker {
+    0% {
+      opacity: 1;
+    }
+  
+    5% {
+      opacity: 0.2;
+    }
+  
+    10% {
+      opacity: 1;
+    }
+  
+    25% {
+      opacity: 0.2;
+    }
+  
+    30% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  input[type="text"] {
+    height: 2.5em; /* Define a fixed height */
+  }
+  
+  button {
+    font-family: inherit;
+    font-size: 20px;
+    background: royalblue;
+    color: white;
+    padding: 0 0.8em; /* Adjusted padding */
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+    height: 2em; /* Define a fixed height */
+  }
+  
+  button span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  button svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  button:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+  }
+  
+  button:hover svg {
+    transform: translateX(1.2em) rotate(45deg) scale(1.1);
+  }
+  
+  button:hover span {
+    transform: translateX(5em);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  @keyframes fly-1 {
+    from {
+      transform: translateY(0.1em);
+    }
+  
+    to {
+      transform: translateY(-0.1em);
+    }
+  }
+  

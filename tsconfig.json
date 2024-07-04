@@ -3,5 +3,16 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "react"
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.mjs"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
+

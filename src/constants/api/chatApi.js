@@ -1,18 +1,37 @@
-import OpenAI from 'openai';
+// chatApi.js
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import 'dotenv/config';
+import Groq from 'groq-sdk';
 
-const client = new OpenAI({
-  apiKey: import.meta.env.OPENAI_API_KEY,
+const app = express();
+const port = process.env.PORT || 5000;
+
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+
+app.use(cors()); // Enable CORS for all origins
+app.use(bodyParser.json());
+
+app.post('/api/chat', async (req, res) => {
+  const { messages } = req.body;
+  console.log('Received messages:', messages); // Log the messages received
+
+  try {
+    const response = await groq.chat.completions.create({
+      model: 'llama3-8b-8192',
+      messages,
+    });
+
+    console.log('Groq API response:', response); // Log the response from Groq API
+
+    res.json({ response: response.choices[0].message.content });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
-export async function post({ request }) {
-  const { messages } = await request.json();
-
-  const response = await client.chat.completions.create({
-    model: 'gpt-3.5-turbo',
-    messages,
-  });
-
-  return new Response(JSON.stringify({ response: response.choices[0].message.content }), {
-    headers: { 'Content-Type': 'application/json' },
-  });
-}
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
