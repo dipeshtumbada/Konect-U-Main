@@ -5,7 +5,7 @@ import 'dotenv/config';
 import Groq from 'groq-sdk';
 
 const app = express();
-const port = 80;  // Port 80 for HTTP
+const port = process.env.PORT || 5000;
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
