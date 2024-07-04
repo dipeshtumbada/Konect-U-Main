@@ -5,7 +5,7 @@ import 'dotenv/config';
 import Groq from 'groq-sdk';
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.GROQ_PORT || 5000; // Use GROQ_PORT from environment variable or default to 5000
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -32,5 +32,5 @@ app.post('/api/chat', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Groq API Server is running on port ${port}`);
 });
