@@ -28,7 +28,7 @@ const Chat = () => {
     setMessages((prevMessages) => [...prevMessages, userMessage]);
   
     try {
-      const response = await fetch('http://54.164.186.90:5000/api/chat', { // Update port if necessary
+      const response = await fetch('http://100.26.156.106:5000/api/chat', { // Update port if necessary
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
