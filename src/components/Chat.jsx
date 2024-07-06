@@ -26,13 +26,14 @@ const Chat = () => {
   setMessages((prevMessages) => [...prevMessages, userMessage]);
 
   try {
-    const response = await fetch('http://localhost:5000/api/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ messages: [userMessage] }),
-    });
+    const response = await fetch('http://54.164.186.90/api/chat', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ messages: [userMessage] }),
+});
+
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
