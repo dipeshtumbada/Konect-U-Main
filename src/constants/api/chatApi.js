@@ -9,10 +9,7 @@ const port = process.env.GROQ_PORT || 5000; // Use GROQ_PORT from environment va
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-app.use(cors({
-  origin: 'http://54.164.186.90'
-}));
-
+app.use(cors()); // Enable CORS for all origins
 app.use(bodyParser.json());
 
 app.post('/api/chat', async (req, res) => {
