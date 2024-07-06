@@ -10,7 +10,7 @@ const port = process.env.GROQ_PORT || 5000; // Use GROQ_PORT from environment va
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 app.use(cors({
-  origin: 'http://http://100.26.156.106',
+  origin: 'http://100.26.156.106',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
