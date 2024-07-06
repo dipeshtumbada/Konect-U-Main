@@ -22,31 +22,33 @@ const Chat = () => {
   };
 
   const sendMessage = async (message) => {
-    const userMessage = { role: 'user', content: message };
-    setMessages((prevMessages) => [...prevMessages, userMessage]);
+  const userMessage = { role: 'user', content: message };
+  setMessages((prevMessages) => [...prevMessages, userMessage]);
 
-    try {
-      const response = await fetch('http://54.164.186.90:5000/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ messages: [userMessage] }),
-      });
+  try {
+    const response = await fetch('http://54.164.186.90:5000/api/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ messages: [userMessage] }),
+    });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-      console.log('Received response:', data);
-
-      const botMessage = { role: 'assistant', content: data.response };
-      setMessages((prevMessages) => [...prevMessages, botMessage]);
-    } catch (error) {
-      console.error('Error fetching data:', error);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-  };
+
+    const data = await response.json();
+    console.log('Received response:', data);
+
+    const botMessage = { role: 'assistant', content: data.response };
+    setMessages((prevMessages) => [...prevMessages, botMessage]);
+  } catch (error) {
+    console.error('Error fetching data:', error); // Log the specific error here
+    // Optionally, you can set a state to indicate the error to the user or retry logic
+  }
+};
+
 
   const toggleChatHistory = () => {
     setIsChatHistoryVisible(!isChatHistoryVisible);
