@@ -14,7 +14,8 @@ const ChatMessage = ({ role, content }) => {
             {line.slice(2, -2)}
           </div>
         );
-      } else if (line.startsWith('* ') || line.startsWith('+ ')) {
+      } 
+      if (line.startsWith('* ') || line.startsWith('+ ')) {
         return (
           <div key={index} className="mb-2">
             • {line.slice(2)}
