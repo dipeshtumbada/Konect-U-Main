@@ -22,14 +22,26 @@ app.post('/api/chat', async (req, res) => {
   console.log('Received messages:', messages); // Log the messages received
 
   try {
-    const response = await groq.chat.completions.create({
+    const chatCompletion = await groq.chat.completions.create({
       model: 'llama3-8b-8192',
       messages,
+      temperature: 1,
+      max_tokens: 1024,
+      top_p: 1,
+      stream: true,
+      stop: null
     });
 
-    console.log('Groq API response:', response); // Log the response from Groq API
+    let formattedResponse = '';
 
-    res.json({ response: response.choices[0].message.content });
+    for await (const chunk of chatCompletion) {
+      const content = chunk.choices[0]?.delta?.content || '';
+      formattedResponse += content.replace(/\n/g, '\n\n');
+    }
+
+    console.log('Groq API response:', formattedResponse); // Log the formatted response
+
+    res.json({ response: formattedResponse });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: error.message });
@@ -37,5 +49,5 @@ app.post('/api/chat', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Groq API Server is running on port ${port}`);
+  console.log(`Groq API Server is running on port ${port}`); // Corrected the backticks for string interpolation
 });
