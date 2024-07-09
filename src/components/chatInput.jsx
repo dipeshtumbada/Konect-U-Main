@@ -1,13 +1,52 @@
+// ChatInput.jsx
 import React, { useState } from 'react';
-import './ChatInput.css'; // Import the CSS file
+import './ChatInput.css';
+import * as pdfjsLib from 'pdfjs-dist/build/pdf';
+
+// Set the workerSrc property using the URL to the worker script in the public directory
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf-worker.js';
 
 const ChatInput = ({ onSend }) => {
   const [input, setInput] = useState('');
 
+  const extractTextFromPDF = async (pdfBytes) => {
+    try {
+      const pdf = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
+      let textContent = '';
+
+      for (let i = 0; i < pdf.numPages; i++) {
+        const page = await pdf.getPage(i + 1);
+        const text = await page.getTextContent();
+        text.items.forEach((item) => {
+          textContent += item.str + ' ';
+        });
+      }
+      return textContent;
+    } catch (error) {
+      console.error('Error extracting text from PDF:', error);
+      return '';
+    }
+  };
+
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (file && file.type === 'application/pdf') {
+      const fileReader = new FileReader();
+      fileReader.onload = async (e) => {
+        const pdfBytes = new Uint8Array(e.target.result);
+        const extractedText = await extractTextFromPDF(pdfBytes);
+        onSend(extractedText);
+      };
+      fileReader.readAsArrayBuffer(file);
+    } else {
+      alert('Please upload a valid PDF file.');
+    }
+  };
+
   const handleSend = () => {
     if (input.trim() !== '') {
       onSend(input);
-      setInput(''); // Clear the input field
+      setInput('');
     }
   };
 
@@ -18,7 +57,7 @@ const ChatInput = ({ onSend }) => {
   return (
     <div className="flex flex-col lg:flex-row w-full gap-2">
       <div className="input-div">
-        <input className="input" name="file" type="file" />
+        <input className="input" type="file" accept="application/pdf" onChange={handleFileChange} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1em"
