@@ -22,27 +22,27 @@ const Chat = () => {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
-
+  
   const sendMessage = async (message) => {
     const userMessage = { role: 'user', content: message };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
-  
+
     try {
       const response = await fetch('http://konectu.in:5000/api/chat', { // Update port if necessary
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ messages: [userMessage] }),
+        body: JSON.stringify({ messages: [...messages, userMessage] }),
       });
-  
+
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-  
+
       const data = await response.json();
       console.log('Received response:', data);
-  
+
       const botMessage = { role: 'assistant', content: data.response };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
     } catch (error) {
