@@ -41,7 +41,7 @@ app.post('/api/chat', async (req, res) => {
 
     console.log('Groq API response:', formattedResponse); // Log the formatted response
 
-    res.json({ response: formattedResponse });
+    res.json({ response: 'This is a test response' });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: error.message });
