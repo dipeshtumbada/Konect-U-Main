@@ -28,7 +28,7 @@ const Chat = () => {
     setMessages((prevMessages) => [...prevMessages, userMessage]);
 
     try {
-      const response = await fetch('https://konectu.in:5000/api/chat', { // Update port if necessary
+      const response = await fetch('https://konectu.in/api/chat', { // Update port if necessary
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
